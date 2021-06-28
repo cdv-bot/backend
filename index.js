@@ -8,7 +8,12 @@ const app = express();
 app.get('/',(req,res)=> res.send("hello world"));
 const server = http.Server(app);
 server.listen(PORT);
-const io = socket(server);
+const io = socket(server,{
+  cors:{
+    origin:"http://localhost:3000",
+    methods:["GET","POST"]
+  }
+});
 
 app.use(cors());
 
