@@ -1,6 +1,11 @@
 const app = require('express')();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http, { origins: '*:*' });
+const io = require('socket.io')(httpServer, {
+  cors: {
+    origin: "http://an-box.surge.sh",
+    methods: ["GET", "POST"]
+  }
+});
 const PORT = process.env.PORT || 4000;
 const request = require('request');
 var rp = require('request-promise');
