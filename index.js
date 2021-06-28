@@ -2,7 +2,7 @@ const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: "http://an-box.surge.sh",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
