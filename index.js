@@ -1,12 +1,18 @@
-const app = require('express')();
+const express = require('express');
 const http = require('http').createServer(app);
-const io = require('socket.io')(http, { origins: '*:*' });
+const cors = require('cors');
+const socketio = require('socket.io');
+const http = require("http");
 const PORT = process.env.PORT || 4000;
-const request = require('request');
-var rp = require('request-promise');
-const cheerio = require('cheerio');
-const fs = require('fs');
 
+
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+app.use(cors());
+
+app
 io.on('connection', socket => {
   socket.on('message', async ({ name, message }) => {
     io.emit('message', { name, message });
